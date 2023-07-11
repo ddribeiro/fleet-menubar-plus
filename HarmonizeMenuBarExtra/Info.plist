@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BUNDLE_ID</key>
+	<string>io.harmonize-stg.HarmonizeMenuBarExtra</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.690844179795-j4vjeg85vsufev795lehv21i0ap7f994</string>
+			</array>
+		</dict>
+	</array>
+	<key>CLIENT_ID</key>
+	<string>690844179795-j4vjeg85vsufev795lehv21i0ap7f994.apps.googleusercontent.com</string>
+	<key>GIDServerClientID</key>
+	<string>690844179795-rrmbb653u6ausgjd9nken7mrbj8m4p4m.apps.googleusercontent.com</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.690844179795-j4vjeg85vsufev795lehv21i0ap7f994</string>
+</dict>
+</plist>
