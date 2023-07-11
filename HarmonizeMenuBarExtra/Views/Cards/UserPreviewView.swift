@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserPreviewView: View {
+    var user: UserDetail
+    
     var body: some View {
         HStack {
             Image("dale")
@@ -21,7 +23,7 @@ struct UserPreviewView: View {
                     .font(.headline)
                 HStack {
                     Image(systemName: "building.2")
-                    Text("Harmonize Technologies, Inc.")
+                    Text(user.company)
                         .foregroundColor(.secondary)
                 }
             }
@@ -31,6 +33,6 @@ struct UserPreviewView: View {
 
 struct UserPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        UserPreviewView()
+        UserPreviewView(user: .example )
     }
 }

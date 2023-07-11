@@ -4,12 +4,10 @@
 //
 //  Created by Dale Ribeiro on 7/5/23.
 //
-
 import SwiftUI
 
 @main
 struct HarmonizeMenuBarExtraApp: App {
-    @AppStorage("showMenuBarExtrass") private var showMenuBarExtra = true
     @Environment(\.colorScheme) var colorScheme
     
     var body: some Scene {

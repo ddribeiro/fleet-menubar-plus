@@ -1,0 +1,252 @@
+{
+	"user": {
+        "id": 1,
+		"start_date": "2022-03-18T14:28:32Z",
+		"name": "Dale Ribeiro",
+		"company": "Harmonize Technologies, Inc.",
+		"department": "Product",
+		"department_id": 1,
+		"job_title": "Product Engineer",
+		"email_address": "dale@harmonize-dev.io",
+		"manager": "Dean Clark Jr (Dev)",
+		"assigned_apps" : [
+			{
+				"id": 1,
+				"name": "Zoom",
+				"active" : true,
+				"expires_in_hours": null,
+				"expired_at": null,
+				"entitled": true
+			},
+			{
+				"id": 2,
+				"name": "Slack",
+				"active" : true,
+				"expires_in_hours": null,
+				"expired_at": null,
+				"entitled": true
+			},
+			{
+				"id": 3,
+				"name": "Figma",
+				"active": false,
+				"expires_in_hours": null,
+				"expired_at": "2022-03-18T14:28:32Z",
+				"entitled": false
+			},
+			{
+				"id": 4,
+				"name": "Github",
+				"active": true,
+				"expires_in_hours": 36,
+				"expired_at": null,
+				"entitled": true
+			},
+			{
+				"id": 5,
+				"name": "Bitbucket",
+				"active" : true,
+				"expires_in_hours": 2,
+				"expired_at": null,
+				"entitled": false
+			},
+			{
+				"id": 6,
+				"name": "BigQuery",
+				"active" : true,
+				"expires_in_hours": null,
+				"expired_at": null,
+				"entitled": false
+			}
+		], 
+		"devices": [
+			{
+				"software_updated_at": "2023-07-11T19:55:13Z",
+				"id": 14,
+				"detail_updated_at": "2023-07-11T19:55:13Z",
+				"label_updated_at": "2023-07-11T19:55:13Z",
+				"policy_updated_at": "2023-07-11T19:55:13Z",
+				"last_enrolled_at": "2023-06-14T16:31:22Z",
+				"seen_time": "2023-07-11T20:46:10Z",
+				"refetch_requested": false,
+				"hostname": "dales-imac.local",
+				"uuid": "AE798CA9-6EDE-5CAE-93F0-15A048689D77",
+				"platform": "darwin",
+				"osquery_version": "5.8.2",
+				"os_version": "macOS 13.4.1",
+				"build": "22F82",
+				"platform_like": "darwin",
+				"code_name": "",
+				"uptime": 88693000000000,
+				"memory": 17179869184,
+				"cpu_type": "arm64e",
+				"cpu_subtype": "ARM64E",
+				"cpu_brand": "Apple M1",
+				"cpu_physical_cores": 8,
+				"cpu_logical_cores": 8,
+				"hardware_vendor": "Apple Inc.",
+				"hardware_model": "iMac21,1",
+				"hardware_version": "",
+				"hardware_serial": "H4TGQ06TQ6XH",
+				"computer_name": "Dale's iMac",
+				"public_ip": "72.87.116.63",
+				"primary_ip": "192.168.5.34",
+				"primary_mac": "3c:a6:f6:7e:ca:71",
+				"distributed_interval": 10,
+				"config_tls_refresh": 60,
+				"logger_tls_period": 10,
+				"team_id": 16,
+				"pack_stats": null,
+				"team_name": "harmonize/mdm/1",
+				"gigs_disk_space_available": 64.88,
+				"percent_disk_space_available": 13,
+				"disk_encryption_enabled": true,
+				"mdm": {
+					"enrollment_status": "On (manual)",
+					"server_url": "https://harmonize.cloud.fleetdm.com/mdm/apple/mdm",
+					"name": "Fleet",
+					"encryption_key_available": true,
+					"profiles": [
+						{
+							"profile_id": 564904,
+							"name": "Fleetd configuration",
+							"status": "verified",
+							"operation_type": "install",
+							"detail": ""
+						},
+						{
+							"profile_id": 636020,
+							"name": "Disk encryption",
+							"status": "verified",
+							"operation_type": "install",
+							"detail": ""
+						},
+						{
+							"profile_id": 841491,
+							"name": "Software Updates",
+							"status": "verified",
+							"operation_type": "install",
+							"detail": ""
+						},
+						{
+							"profile_id": 841492,
+							"name": "Disable Automatic Login",
+							"status": "verified",
+							"operation_type": "install",
+							"detail": ""
+						},
+						{
+							"profile_id": 841493,
+							"name": "Automatically Install App Updates",
+							"status": "verified",
+							"operation_type": "install",
+							"detail": ""
+						},
+						{
+							"profile_id": 841494,
+							"name": "Enable Gatekeeper",
+							"status": "verified",
+							"operation_type": "install",
+							"detail": ""
+						}
+					],
+					"macos_settings": {
+						"disk_encryption": "verified",
+						"action_required": null
+					},
+					"macos_setup": {
+						"bootstrap_package_status": "",
+						"detail": "",
+						"bootstrap_package_name": ""
+					}
+				},
+				"policies": [
+					{
+						"id": 1,
+						"name": "Disk Encryption",
+						"critical": false,
+						"description": "Checks to make sure that full disk encryption (FileVault) is enabled on macOS devices.",
+						"resolution": "To enable full disk encryption, on the failing device, select System Preferences > Security & Privacy > FileVault > Turn On FileVault.",
+						"response": "fail"
+					},
+					{
+						"id": 2,
+						"name": "macOS Up To Date",
+						"critical": false,
+						"description": "Checks to make sure you are running the most recent version of macOS.",
+						"resolution": "To install updates, open System Settings > General > Software Update and install any updates that are available.",
+						"response": "pass"
+					},
+					{
+						"id": 3,
+						"name": "Battery Health",
+						"critical": false,
+						"description": "Checks to make sure the battery has at least 80% full charge capacity and under 1000 full charge cycles",
+						"resolution": "Check with your IT department to see if service is needed to resolve battery issues",
+						"response": "pass"
+					},
+					{
+						"id": 4,
+						"name": "Password Policy",
+						"critical": true,
+						"description": "Checks to make sure that full disk encryption (FileVault) is enabled on macOS devices.",
+						"resolution": "Check with your IT department to make sure your password meets your company's minimum password requirements",
+						"response": "pass"
+					}
+				],
+				"groups": [
+					{
+						"id": 1,
+						"name": "All Employees",
+						"source": "Harmonize"
+					},
+					{
+						"id": 2,
+						"name": "Fleet API User",
+						"source": "Google"
+					},
+					{
+						"id": 3,
+						"name": "Proudct",
+						"source": "Okta"
+					},
+					{
+						"id": 4,
+						"name": "Product",
+						"source": "Slack"
+					},
+					{
+						"id": 5,
+						"name": "Product Team",
+						"source": "Google"
+					},
+					{
+						"id": 6,
+						"name": "Release Captains",
+						"source": "Google"
+					},
+					{
+						"id": 7,
+						"name": "Retriever Admins",
+						"source": "Okta"
+					},
+					{
+						"id": 8,
+						"name": "Sales",
+						"source": "Zoom"
+					},
+					{
+						"id": 9,
+						"name": "Support",
+						"source": "Google"
+					},
+					{
+						"id": 10,
+						"name": "Tech Talks",
+						"source": "Google"
+					}
+				]
+			}
+		]
+	}
+}

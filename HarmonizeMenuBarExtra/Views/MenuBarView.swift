@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MenuBarView: View {
     @Environment(\.colorScheme) var colorScheme
+    let user: User = Bundle.main.decode(User.self, from: "user.json")
     
     var body: some View {
         VStack {
@@ -29,7 +30,7 @@ struct MenuBarView: View {
             Divider()
             
             HStack {
-                UserPreviewView()
+                UserPreviewView(user: user.user)
                 Spacer()
             }
             
@@ -115,10 +116,6 @@ struct MenuBarView: View {
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .padding()
-    
-                
-            
-            
         }
         .background(.ultraThinMaterial)
     }
