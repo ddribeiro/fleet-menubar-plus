@@ -19,7 +19,7 @@ struct UserPreviewView: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text("Dale Ribeiro's MacBook Pro")
+                Text(user.name)
                     .font(.headline)
                 HStack {
                     Image(systemName: "building.2")

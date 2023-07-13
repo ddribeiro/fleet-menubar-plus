@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct ViewAppAccessCard: View {
+    var applications: [Application]
+    
     var body: some View {
         VStack {
             Image(systemName: "key.horizontal")
                 .imageScale(.large)
                 .padding(.vertical, 1)
                 
-            
-            Text("View My App Access")
-                .font(.headline)
-                .multilineTextAlignment(.center)
+            NavigationLink {
+                MyAppAccessView(applications: applications)
+            } label: {
+                Text("View My App Access")
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+            }
+            .buttonStyle(.borderless)
         }
         .frame(width: 80)
         .padding()
@@ -26,6 +32,6 @@ struct ViewAppAccessCard: View {
 
 struct ViewAppAccessCard_Previews: PreviewProvider {
     static var previews: some View {
-        ViewAppAccessCard()
+        ViewAppAccessCard(applications: [.example])
     }
 }

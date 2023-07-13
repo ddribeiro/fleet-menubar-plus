@@ -22,11 +22,12 @@ struct UserDetail: Codable, Identifiable {
     var emailAddress: String
     var manager: String
     var assignedApps: [Application]
+    var gravatarUrl: String
     
-    static let example = UserDetail(id: 1, startDate: .now, name: "Dale Ribeiro", company: "Harmonize Technologies, Inc.", department: "Product", departmentId: 1, jobTitle: "Product Engineer", emailAddress: "dale@harmonize.io", manager: "Dean Clark Jr (Dev)", assignedApps: [.example])
+    static let example = UserDetail(id: 1, startDate: .now, name: "Dale Ribeiro", company: "Harmonize Technologies, Inc.", department: "Product", departmentId: 1, jobTitle: "Product Engineer", emailAddress: "dale@harmonize.io", manager: "Dean Clark Jr (Dev)", assignedApps: [.example], gravatarUrl: "https://0.gravatar.com/avatar/ce8677131ede31409687636dea009c3a")
 }
 
-struct Application: Codable, Identifiable {
+struct Application: Codable, Identifiable, Hashable {
     var id: Int
     var name: String
     var active: Bool
