@@ -16,32 +16,20 @@ struct MyAppAccessView: View {
         if searchText.isEmpty {
             return activeApplications
         } else {
-            return activeApplications.filter { $0.name.contains(searchText) }
+            return activeApplications.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
-    }
-    
-    enum SearchScope {
-        case pending
-        case active
-        case closed
     }
     
     @State private var searchText = ""
     @State private var pickerSelection = "Pending"
     @State private var pickerOptions = ["Pending", "Active", "Closed"]
-    @State private var scope: SearchScope = .active
     var body: some View {
-        
-        NavigationStack {
+        VStack {
             TextField("􀊫 Search", text: $searchText)
-                .padding(.horizontal)
+                .padding([.horizontal, .top])
                 .textFieldStyle(.roundedBorder)
                 .searchable(text: $searchText, placement: .automatic)
-                .searchScopes($scope) {
-                    Text("Pending").tag(SearchScope.pending)
-                    Text("Active").tag(SearchScope.active)
-                    Text("Closed").tag(SearchScope.closed)
-                }
+        
             List {
                 ForEach(searchResults) { application in
                     AppRowView(application: application)
@@ -49,8 +37,6 @@ struct MyAppAccessView: View {
                     
                 }
             }
-            .searchable(text: $searchText, placement: .toolbar)
-            
         }
         .navigationTitle("My App Access")
         .frame(width: 400)

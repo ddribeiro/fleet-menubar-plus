@@ -39,7 +39,7 @@ struct AppRowView: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(.ultraThickMaterial)
+        .background(.regularMaterial)
     }
 }
 

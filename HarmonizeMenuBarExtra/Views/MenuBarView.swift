@@ -67,49 +67,22 @@ struct MenuBarView: View {
                 }
                 .padding(.horizontal)
                 
-                Form {
-                    Group {
-                        HStack {
-                            Text("Disk Space")
-                            Spacer()
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
+                List {
+                    ForEach(user.user.devices) { device in
+                        ForEach(device.policies) { policy in
+                            HStack {
+                                Image(systemName: policy.response == "pass" ? "checkmark.circle.fill" : "xmark.circle.fill")
+                                    .imageScale(.large)
+                                    .foregroundColor(policy.response == "pass" ? .green : .red)
+                                Text(policy.name)
+                                Spacer()
+                            }
                         }
-                        .padding(.top)
-                        
-                        Divider()
-                        
-                        HStack {
-                            Text("Battery Health")
-                            Spacer()
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                        }
-                        
-                        Divider()
-                        
-                        HStack {
-                            Text("Disk Encryption")
-                            Spacer()
-                            Image(systemName: "exclamationmark.circle.fill")
-                                .foregroundColor(.red)
-                            
-                        }
-                        
-                        Divider()
-                        
-                        HStack {
-                            Text("Warranty Status")
-                            Spacer()
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                        }
-                        .padding(.bottom)
+                        .listRowSeparator(.visible)
+                        .listRowSeparatorTint(.secondary)
                     }
-                    .padding(.vertical, 3)
-                    .padding(.horizontal)
+                    .padding()
                 }
-                
                 .background(.regularMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .padding(.horizontal)

@@ -15,7 +15,7 @@ struct UserPreviewView: View {
             Image("dale")
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: 50)
+                .frame(width: 30)
                 .clipShape(Circle())
             
             VStack(alignment: .leading) {
@@ -28,6 +28,7 @@ struct UserPreviewView: View {
                 }
             }
         }
+        .padding(.horizontal)
     }
 }
 
