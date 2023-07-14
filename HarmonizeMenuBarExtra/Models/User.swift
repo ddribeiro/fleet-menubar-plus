@@ -31,6 +31,7 @@ struct Application: Codable, Identifiable, Hashable {
     var id: Int
     var name: String
     var active: Bool
+    var accessLevel: String?
     var expiresInHours: Int?
     var expiredAt: Date?
     var entitled: Bool

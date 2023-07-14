@@ -15,6 +15,7 @@
 				"id": 1,
 				"name": "Zoom",
 				"active" : true,
+                "access_level": "Basic",
 				"expires_in_hours": null,
 				"expired_at": null,
 				"entitled": true
@@ -23,6 +24,7 @@
 				"id": 2,
 				"name": "Slack",
 				"active" : true,
+                "access_level": "Licensed",
 				"expires_in_hours": null,
 				"expired_at": null,
 				"entitled": true
@@ -31,6 +33,7 @@
 				"id": 3,
 				"name": "Figma",
 				"active": false,
+                "access_level": null,
 				"expires_in_hours": null,
 				"expired_at": "2022-03-18T14:28:32Z",
 				"entitled": false
@@ -39,6 +42,7 @@
 				"id": 4,
 				"name": "Github",
 				"active": true,
+                "access_level": "User",
 				"expires_in_hours": 36,
 				"expired_at": null,
 				"entitled": true
@@ -47,6 +51,7 @@
 				"id": 5,
 				"name": "Bitbucket",
 				"active" : true,
+                "access_level": "Basic",
 				"expires_in_hours": 2,
 				"expired_at": null,
 				"entitled": false
@@ -55,6 +60,7 @@
 				"id": 6,
 				"name": "BigQuery",
 				"active" : true,
+                "access_level": "Viewer",
 				"expires_in_hours": null,
 				"expired_at": null,
 				"entitled": false

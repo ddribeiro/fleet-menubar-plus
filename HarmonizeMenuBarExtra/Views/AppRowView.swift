@@ -27,23 +27,24 @@ struct AppRowView: View {
                     .font(.headline)
                 HStack {
                     Text(application.active ? "Active" : "")
-                    Image(systemName: "circle.fill")
-                        .imageScale(.small)
-                    Text("Viewer")
+                    if let access = application.accessLevel {
+                        Text("•")
+                        Text(access)
+                    }
                 }
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
             }
             Spacer()
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(.thickMaterial)
+        .background(.ultraThickMaterial)
     }
 }
 
 struct AppRowView_Previews: PreviewProvider {
     static var previews: some View {
-        AppRowView(application: .example)
+        AppRowView(application: Application(id: 3, name: "Zoom", active: false, entitled: true))
     }
 }
