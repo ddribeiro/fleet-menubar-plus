@@ -13,14 +13,7 @@ struct MyAppAccessView: View {
     @State private var pickerSelection = "Pending"
     @State private var pickerOptions = ["Pending", "Active", "Closed"]
     var body: some View {
-        VStack {
-            Picker(" ", selection: $pickerSelection) {
-                ForEach(pickerOptions, id: \.self) {
-                    Text($0)
-                }
-            }
-            .padding(.trailing)
-            .pickerStyle(.segmented)
+        NavigationStack {
             List {
                 ForEach(applications) { application in
                     AppRowView(application: application)
@@ -28,10 +21,10 @@ struct MyAppAccessView: View {
                     
                 }
             }
-            .searchable(text: $searchText, placement: .toolbar)
+            .searchable(text: $searchText)
         }
-        .padding(.top)
-        .navigationTitle("My Apps")
+        
+        .navigationTitle("My App Access")
         .frame(width: 400)
     }
 }

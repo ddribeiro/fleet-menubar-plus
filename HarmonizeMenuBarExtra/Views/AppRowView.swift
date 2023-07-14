@@ -12,11 +12,15 @@ struct AppRowView: View {
     
     var body: some View {
         HStack {
-            Image("dale")
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 30)
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+            ZStack {
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(.white)
+                    .frame(width: 40, height: 40)
+                Image(application.name.lowercased())
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 25, maxHeight: 25)
+            }
             
             VStack(alignment: .leading) {
                 Text(application.name)
