@@ -21,6 +21,8 @@ struct DevicePolicyRow: View {
                     .foregroundColor(.secondary)
                 }
             Spacer()
+            
+            Image(systemName: "chevron.forward")
         }
         .frame(maxWidth: .infinity)
         .padding()
