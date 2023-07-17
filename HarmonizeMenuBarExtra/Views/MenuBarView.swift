@@ -73,6 +73,7 @@ struct MenuBarView: View {
                                 DevicePolicyRow(policy: policy)
                             }
                             .buttonStyle(.borderless)
+                            .tint(.primary)
                         }
                         .background(.regularMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
