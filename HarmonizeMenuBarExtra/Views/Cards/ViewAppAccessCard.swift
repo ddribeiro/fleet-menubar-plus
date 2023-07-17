@@ -24,6 +24,7 @@ struct ViewAppAccessCard: View {
                     .multilineTextAlignment(.center)
             }
             .buttonStyle(.borderless)
+            .tint(.primary)
         }
         .frame(width: 80)
         .padding()
