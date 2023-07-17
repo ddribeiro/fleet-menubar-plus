@@ -31,13 +31,13 @@ struct UserDetail: Codable, Identifiable {
 struct Application: Codable, Identifiable, Hashable {
     var id: Int
     var name: String
-    var active: Bool
+    var active: String
     var accessLevel: String?
     var expiresInHours: Int?
     var expiredAt: Date?
     var entitled: Bool
     
-    static let example = Application(id: 1, name: "Zoom", active: true, expiresInHours: 48, expiredAt: .distantPast, entitled: true)
+    static let example = Application(id: 1, name: "Zoom", active: "active", expiresInHours: 48, expiredAt: .distantPast, entitled: true)
 }
 
 struct Device: Codable, Identifiable {

@@ -56,7 +56,6 @@ struct MenuBarView: View {
                 .containerShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .fixedSize(horizontal: false, vertical: true)
                 .padding([.horizontal, .bottom], 16)
-//                .frame(maxWidth: 12000)
                 
                 Divider()
                 
@@ -78,10 +77,10 @@ struct MenuBarView: View {
                                 Spacer()
                             }
                         }
+                        .padding()
                         .listRowSeparator(.visible)
                         .listRowSeparatorTint(.secondary)
                     }
-                    .padding()
                 }
                 .background(.regularMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -92,9 +91,9 @@ struct MenuBarView: View {
                     .foregroundColor(.secondary)
                     .padding()
             }
-            .background(.ultraThinMaterial)
         }
         .frame(minWidth: 400, minHeight: 550)
+        .fixedSize()
     }
 }
 

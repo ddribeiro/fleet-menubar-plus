@@ -26,7 +26,7 @@ struct AppRowView: View {
                 Text(application.name)
                     .font(.headline)
                 HStack {
-                    Text(application.active ? "Active" : "")
+                    Text(application.active.capitalized)
                     if let access = application.accessLevel {
                         Text("•")
                         Text(access)
@@ -45,6 +45,6 @@ struct AppRowView: View {
 
 struct AppRowView_Previews: PreviewProvider {
     static var previews: some View {
-        AppRowView(application: Application(id: 3, name: "Zoom", active: false, entitled: true))
+        AppRowView(application: Application(id: 3, name: "Zoom", active: "active", entitled: true))
     }
 }

@@ -23,8 +23,10 @@ struct PolicyDetailView: View {
                     .lineLimit(.max)
             }
             .padding()
+            .clipShape(RoundedRectangle(cornerRadius: 19, style: .continuous))
             .navigationTitle(policy.name)
             .frame(width: 400)
+            
         }
 }
 

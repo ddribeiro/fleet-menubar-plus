@@ -12,7 +12,7 @@ struct HarmonizeMenuBarExtraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MenuBarView()
+            ContentView()
         }
         MenuBarExtra("Harmonize Menu Bar Extra", image: colorScheme == .light ? "harmonize-symbol-black-32px" : "harmonize-symbol-white-32px") {
             MenuBarView()
