@@ -45,7 +45,7 @@ struct Device: Codable, Identifiable {
     var policies: [Policy]
 }
 
-struct Policy: Codable, Identifiable {
+struct Policy: Codable, Identifiable, Hashable {
     var id: Int
     var name: String
     var critical: Bool

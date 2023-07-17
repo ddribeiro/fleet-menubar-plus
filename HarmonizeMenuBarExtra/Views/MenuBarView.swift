@@ -66,32 +66,28 @@ struct MenuBarView: View {
                 }
                 .padding(.horizontal)
                 
-                List {
+                ScrollView {
                     ForEach(user.user.devices) { device in
                         ForEach(device.policies) { policy in
-                            HStack {
-                                Image(systemName: policy.response == "pass" ? "checkmark.circle.fill" : "xmark.circle.fill")
-                                    .imageScale(.large)
-                                    .foregroundColor(policy.response == "pass" ? .green : .red)
-                                Text(policy.name)
-                                Spacer()
+                            NavigationLink(value: policy) {
+                                DevicePolicyRow(policy: policy)
                             }
+                            .buttonStyle(.borderless)
                         }
-                        .padding()
-                        .listRowSeparator(.visible)
-                        .listRowSeparatorTint(.secondary)
+                        .background(.regularMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal)
                     }
                 }
-                .background(.regularMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .padding(.horizontal)
                 
                 Text("Secure login and automated access provided by Harmmonize.")
                     .font(.footnote)
                     .foregroundColor(.secondary)
                     .padding()
             }
+            .navigationDestination(for: Policy.self, destination: PolicyDetailView.init)
         }
+        
         .frame(minWidth: 400, minHeight: 550)
         .fixedSize()
     }
