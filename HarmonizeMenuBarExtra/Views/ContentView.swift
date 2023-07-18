@@ -16,7 +16,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: "https://hws.dev/img/bad.png")) { phase in
+            AsyncImage(url: URL(string: "https://0.gravatar.com/avatar/ce8677131ede31409687636dea009c3a")) { phase in
                 if let image = phase.image {
                     image
                         .resizable()

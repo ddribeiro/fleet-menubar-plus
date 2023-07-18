@@ -40,6 +40,16 @@ struct Application: Codable, Identifiable, Hashable {
     static let example = Application(id: 1, name: "Zoom", active: "active", expiresInHours: 48, expiredAt: .distantPast, entitled: true)
 }
 
+struct LibraryApp: Codable, Identifiable, Hashable {
+    var id: Int
+    var name: String
+    var description: String
+}
+
+struct ApplicationResponse: Codable, Hashable {
+    var applications: [LibraryApp]
+}
+
 struct Device: Codable, Identifiable {
     var id: Int
     var policies: [Policy]

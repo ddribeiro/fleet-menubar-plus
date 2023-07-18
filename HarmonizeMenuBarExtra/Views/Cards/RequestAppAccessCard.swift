@@ -9,16 +9,23 @@ import SwiftUI
 
 struct RequestAppAccessCard: View {
     var body: some View {
-        VStack {
-            Image(systemName: "plus.circle")
-                .imageScale(.large)
-                .padding(.vertical, 1)
+        NavigationLink {
+            AppLibraryView()
+        } label: {
+            VStack {
+                Image(systemName: "plus.circle")
+                    .imageScale(.large)
+                    .padding(.vertical, 1)
                 
+                
+                Text("Request App Access")
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+            }
             
-            Text("Request App Access")
-                .font(.headline)
-                .multilineTextAlignment(.center)
         }
+        .buttonStyle(.borderless)
+        .tint(.primary)
         .frame(width: 80)
         .padding()
     }

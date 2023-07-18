@@ -12,11 +12,25 @@ struct UserPreviewView: View {
     
     var body: some View {
         HStack {
-            Image("dale")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30)
-                .clipShape(Circle())
+            AsyncImage(url: URL(string: user.gravatarUrl)) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 44)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle()
+                                .stroke(.secondary, lineWidth: 1)
+                                .opacity(0.1)
+                                .frame(width: 44)
+                            )
+                } else if phase.error != nil {
+                    Text("There was an error loading the image.")
+                } else {
+                    ProgressView()
+                }
+            }
             
             VStack(alignment: .leading) {
                 Text(user.name)

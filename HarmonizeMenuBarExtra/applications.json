@@ -1,0 +1,48 @@
+{
+	"applications": [{
+			"id": 1,
+			"name": "Zoom",
+			"description": "Video Conferencing"
+		},
+		{
+			"id": 2,
+			"name": "Slack",
+			"description": "Company Messaging"
+		},
+		{
+			"id": 3,
+			"name": "Figma",
+			"description": "Design Tools"
+		},
+		{
+			"id": 4,
+			"name": "Github",
+			"description": "Code Repository"
+		},
+		{
+			"id": 5,
+			"name": "Bitbucket",
+			"description": "Code Repository"
+		},
+		{
+			"id": 6,
+			"name": "BigQuery",
+			"description": "Data Warehouse"
+		},
+		{
+			"id": 7,
+			"name": "Google Groups",
+			"description": "Groups and Email Lists"
+		},
+		{
+			"id": 8,
+			"name": "Okta",
+			"description": "SSO"
+		},
+		{
+			"id": 9,
+			"name": "Github",
+			"description": "Code Repository"
+		}
+	]
+}

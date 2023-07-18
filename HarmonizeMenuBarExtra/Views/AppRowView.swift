@@ -15,11 +15,11 @@ struct AppRowView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(.white)
-                    .frame(width: 40, height: 40)
+                    .frame(width: 44, height: 44)
                 Image(application.name.lowercased())
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: 25, maxHeight: 25)
+                    .frame(maxWidth: 30, maxHeight: 30)
             }
             
             VStack(alignment: .leading) {

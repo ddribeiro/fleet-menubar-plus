@@ -11,21 +11,21 @@ struct ViewAppAccessCard: View {
     var applications: [Application]
     
     var body: some View {
-        VStack {
-            Image(systemName: "key.horizontal")
-                .imageScale(.large)
-                .padding(.vertical, 1)
-                
             NavigationLink {
                 MyAppAccessView(applications: applications)
             } label: {
-                Text("View My App Access")
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
+                VStack {
+                    Image(systemName: "key.horizontal")
+                        .imageScale(.large)
+                        .padding(.vertical, 1)
+                    Text("View My App Access")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+
             }
+        }
             .buttonStyle(.borderless)
             .tint(.primary)
-        }
         .frame(width: 80)
         .padding()
     }
