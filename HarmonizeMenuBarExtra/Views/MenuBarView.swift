@@ -56,7 +56,7 @@ struct MenuBarView: View {
                 }
                 .containerShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .fixedSize(horizontal: false, vertical: true)
-                .padding([.horizontal, .bottom], 16)
+                .padding(.bottom)
 
                 Divider()
 
