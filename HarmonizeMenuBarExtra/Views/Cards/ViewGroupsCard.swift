@@ -13,8 +13,7 @@ struct ViewGroupsCard: View {
             Image(systemName: "person.3")
                 .imageScale(.large)
                 .padding(.vertical, 1)
-                
-            
+
             Text("View My Groups")
                 .font(.headline)
                 .multilineTextAlignment(.center)

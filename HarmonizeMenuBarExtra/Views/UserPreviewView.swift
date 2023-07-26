@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserPreviewView: View {
     var user: UserDetail
-    
+
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: user.gravatarUrl)) { phase in
@@ -31,7 +31,7 @@ struct UserPreviewView: View {
                     ProgressView()
                 }
             }
-            
+
             VStack(alignment: .leading) {
                 Text(user.name)
                     .font(.headline)

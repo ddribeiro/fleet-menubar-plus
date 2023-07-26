@@ -20,6 +20,7 @@
 		5E4B4FFF2A5DF45A00A06336 /* ViewAppAccessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFB2A5DF45A00A06336 /* ViewAppAccessCard.swift */; };
 		5E4B50002A5DF45A00A06336 /* ViewGroupsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFC2A5DF45A00A06336 /* ViewGroupsCard.swift */; };
 		5E4B50012A5DF45A00A06336 /* UserPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */; };
+		5E8785692A7057CB0085354B /* AppCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8785682A7057CB0085354B /* AppCardView.swift */; };
 		5EB09A0A2A65D35500EAC696 /* DevicePolicyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */; };
 		5EB09A0C2A65D83500EAC696 /* RequestAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */; };
 		5EB6BA762A5F240D00B72537 /* MyAppAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */; };
@@ -46,6 +47,7 @@
 		5E4B4FFC2A5DF45A00A06336 /* ViewGroupsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewGroupsCard.swift; sourceTree = "<group>"; };
 		5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreviewView.swift; sourceTree = "<group>"; };
 		5E8672702A55EAA80056B9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5E8785682A7057CB0085354B /* AppCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCardView.swift; sourceTree = "<group>"; };
 		5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePolicyRow.swift; sourceTree = "<group>"; };
 		5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAccessView.swift; sourceTree = "<group>"; };
 		5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppAccessView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */,
 				5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */,
 				5E41FAA72A6704430047E360 /* AppLibraryView.swift */,
+				5E8785682A7057CB0085354B /* AppCardView.swift */,
 				5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */,
 				5EFAC0052A5E08B10070FBAC /* Cards */,
 			);
@@ -161,6 +164,7 @@
 				5E0F41412A55B2B400889BF6 /* Sources */,
 				5E0F41422A55B2B400889BF6 /* Frameworks */,
 				5E0F41432A55B2B400889BF6 /* Resources */,
+				5E8785672A70414F0085354B /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -222,11 +226,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E8785672A70414F0085354B /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5E0F41412A55B2B400889BF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E8785692A7057CB0085354B /* AppCardView.swift in Sources */,
 				5E41FAA82A6704430047E360 /* AppLibraryView.swift in Sources */,
 				5EB6BA762A5F240D00B72537 /* MyAppAccessView.swift in Sources */,
 				5EFAC0092A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift in Sources */,

@@ -24,8 +24,21 @@ struct UserDetail: Codable, Identifiable {
     var manager: String
     var assignedApps: [Application]
     var gravatarUrl: String
-    
-    static let example = UserDetail(id: 1, startDate: .now, name: "Dale Ribeiro", company: "Harmonize Technologies, Inc.", department: "Product", departmentId: 1, jobTitle: "Product Engineer", emailAddress: "dale@harmonize.io", devices: [Device(id: 1, policies: [.example])], manager: "Dean Clark Jr (Dev)", assignedApps: [.example], gravatarUrl: "https://0.gravatar.com/avatar/ce8677131ede31409687636dea009c3a")
+
+    static let example = UserDetail(
+        id: 1,
+        startDate: .now,
+        name: "Dale Ribeiro",
+        company: "Harmonize Technologies, Inc.",
+        department: "Product",
+        departmentId: 1,
+        jobTitle: "Product Engineer",
+        emailAddress: "dale@harmonize.io",
+        devices: [Device(id: 1, policies: [.example])],
+        manager: "Dean Clark Jr (Dev)",
+        assignedApps: [.example],
+        gravatarUrl: "https://0.gravatar.com/avatar/ce8677131ede31409687636dea009c3a"
+    )
 }
 
 struct Application: Codable, Identifiable, Hashable {
@@ -36,8 +49,15 @@ struct Application: Codable, Identifiable, Hashable {
     var expiresInHours: Int?
     var expiredAt: Date?
     var entitled: Bool
-    
-    static let example = Application(id: 1, name: "Zoom", active: "active", expiresInHours: 48, expiredAt: .distantPast, entitled: true)
+
+    static let example = Application(
+        id: 1,
+        name: "Zoom",
+        active: "active",
+        expiresInHours: 48,
+        expiredAt: .distantPast,
+        entitled: true
+)
 }
 
 struct LibraryApp: Codable, Identifiable, Hashable {
@@ -62,6 +82,14 @@ struct Policy: Codable, Identifiable, Hashable {
     var description: String
     var resolution: String
     var response: String
-    
-    static let example = Policy(id: 1, name: "Disk Encryption", critical: false, description: "Checks to make sure that full disk encryption (FileVault) is enabled on macOS devices.", resolution: "To enable full disk encryption, on the failing device, select System Preferences > Security & Privacy > FileVault > Turn On FileVault.", response: "fail")
+
+    static let example = Policy(
+        id: 1,
+        name: "Disk Encryption",
+        critical: false,
+        description: "Checks to make sure that full disk encryption (FileVault) is enabled on macOS devices.",
+        // swiftlint:disable:next line_length
+        resolution: "To enable full disk encryption, on the failing device, select System Preferences > Security & Privacy > FileVault > Turn On FileVault.",
+        response: "fail"
+    )
 }

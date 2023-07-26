@@ -9,44 +9,42 @@ import SwiftUI
 
 struct AppLibraryView: View {
     var applications: ApplicationResponse = Bundle.main.decode(ApplicationResponse.self, from: "applications.json")
-    
+
     let columns = [
-        GridItem(.adaptive(minimum: 100))
+        GridItem(.adaptive(minimum: 130))
     ]
-    
+
+    @State private var searchText = ""
+
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns) {
-                ForEach(applications.applications) { application in
-                    NavigationLink {
-                        RequestAccessView()
-                    } label: {
-                        VStack {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .fill(.white)
-                                    .frame(width: 44, height: 44)
-                                Image(application.name.lowercased())
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxWidth: 30, maxHeight: 30)
-                            }
-                            Text(application.name)
-                                .font(.headline)
-                            Text(application.description)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+        VStack {
+            TextField("􀊫 Search", text: $searchText)
+                .padding([.horizontal, .top])
+                .textFieldStyle(.roundedBorder)
+
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(applications.applications) { application in
+                        NavigationLink {
+                            RequestAccessView()
+                        } label: {
+                            AppCardView(application: application)
                         }
+                        .padding()
+                        .buttonStyle(.borderless)
+                        .tint(.primary)
                     }
-                    .buttonStyle(.borderless)
-                    .tint(.primary)
+                    .frame(width: 130, height: 130)
+                    .background(.regularMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
                 }
             }
+            .padding(.horizontal)
         }
-        .padding()
+        .frame(maxWidth: 450, maxHeight: 550)
         .navigationTitle("App Library")
-        .frame(maxWidth: 400, minHeight: 550)
     }
+
 }
 
 struct AppLibraryView_Previews: PreviewProvider {

@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct RequestAccessView: View {
-    
+
     enum Role: CaseIterable {
         case admin
         case user
         case auditor
         case viewer
     }
-    
+
     @State private var roleSelection: Role = .admin
     @State private var endDate = Date.now
     @State private var reasonTextField = ""
-    
+
     var body: some View {
         VStack {
             HStack {

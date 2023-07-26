@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppRowView: View {
     var application: Application
-    
+
     var body: some View {
         HStack {
             ZStack {
@@ -21,7 +21,7 @@ struct AppRowView: View {
                     .scaledToFit()
                     .frame(maxWidth: 30, maxHeight: 30)
             }
-            
+
             VStack(alignment: .leading) {
                 Text(application.name)
                     .font(.headline)

@@ -16,13 +16,12 @@ struct RequestAppAccessCard: View {
                 Image(systemName: "plus.circle")
                     .imageScale(.large)
                     .padding(.vertical, 1)
-                
-                
+
                 Text("Request App Access")
                     .font(.headline)
                     .multilineTextAlignment(.center)
             }
-            
+
         }
         .buttonStyle(.borderless)
         .tint(.primary)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PolicyDetailView: View {
     var policy: Policy
-    
+
     var body: some View {
             VStack(alignment: .leading) {
                 if policy.response != "pass" {
@@ -21,11 +21,11 @@ struct PolicyDetailView: View {
                             .frame(width: 100, height: 100)
                             .symbolRenderingMode(.multicolor)
                             .foregroundColor(.primary)
-                        
+
                         Spacer()
                     }
                 }
-                
+
                 Text("Description:")
                     .font(.headline)
                 Text(policy.description)
@@ -38,7 +38,7 @@ struct PolicyDetailView: View {
                 Text(policy.resolution)
                     .lineLimit(.max)
                     .fixedSize(horizontal: false, vertical: true)
-                
+
             }
             .padding()
             .clipShape(RoundedRectangle(cornerRadius: 19, style: .continuous))

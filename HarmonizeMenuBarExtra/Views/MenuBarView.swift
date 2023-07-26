@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuBarView: View {
     @Environment(\.colorScheme) var colorScheme
     let user: User = Bundle.main.decode(User.self, from: "user.json")
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -20,52 +20,53 @@ struct MenuBarView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(height: 25)
-                    
+
                     Spacer()
-                    
+
                     Image(systemName: "bell.badge.fill")
                     Image(systemName: "line.3.horizontal")
                 }
                 .padding()
-                
+
                 Divider()
-                
+
                 HStack {
                     UserPreviewView(user: user.user)
                     Spacer()
                 }
-                
+
                 Divider()
-                
+
                 HStack {
                     Text("Actions")
                         .font(.headline)
-                    
+
                     Spacer()
                 }
                 .padding(.horizontal)
-                
+
                 Grid(horizontalSpacing: 12, verticalSpacing: 12) {
                     GridRow {
                         RequestAppAccessCard()
                         ViewAppAccessCard(applications: user.user.assignedApps)
                         ViewGroupsCard()
                     }
+                    .frame(width: 120, height: 100)
                     .background(.regularMaterial)
                 }
                 .containerShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .fixedSize(horizontal: false, vertical: true)
                 .padding([.horizontal, .bottom], 16)
-                
+
                 Divider()
-                
+
                 HStack {
                     Text("My Device Health")
                         .font(.headline)
                     Spacer()
                 }
                 .padding(.horizontal)
-                
+
                 ScrollView {
                     ForEach(user.user.devices) { device in
                         ForEach(device.policies) { policy in
@@ -80,7 +81,7 @@ struct MenuBarView: View {
                         .padding(.horizontal)
                     }
                 }
-                
+
                 Text("Secure login and automated access provided by Harmmonize.")
                     .font(.footnote)
                     .foregroundColor(.secondary)
@@ -88,8 +89,8 @@ struct MenuBarView: View {
             }
             .navigationDestination(for: Policy.self, destination: PolicyDetailView.init)
         }
-        
-        .frame(minWidth: 400, minHeight: 550)
+
+        .frame(minWidth: 450, minHeight: 550)
         .fixedSize()
     }
 }
