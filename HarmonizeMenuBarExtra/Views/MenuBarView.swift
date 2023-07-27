@@ -51,7 +51,7 @@ struct MenuBarView: View {
                         ViewAppAccessCard(applications: user.user.assignedApps)
                         ViewGroupsCard()
                     }
-                    .frame(width: 120, height: 100)
+                    .frame(width: 130, height: 100)
                     .background(.regularMaterial)
                 }
                 .containerShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
