@@ -24,6 +24,7 @@
 		5EB09A0A2A65D35500EAC696 /* DevicePolicyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */; };
 		5EB09A0C2A65D83500EAC696 /* RequestAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */; };
 		5EB6BA762A5F240D00B72537 /* MyAppAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */; };
+		5EE161D42A7C2F9900163390 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE161D32A7C2F9900163390 /* Host.swift */; };
 		5EFAC0002A5E07EE0070FBAC /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EFABFFF2A5E07EE0070FBAC /* user.json */; };
 		5EFAC0022A5E08170070FBAC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAC0012A5E08170070FBAC /* User.swift */; };
 		5EFAC0092A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAC0072A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift */; };
@@ -52,6 +53,7 @@
 		5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAccessView.swift; sourceTree = "<group>"; };
 		5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppAccessView.swift; sourceTree = "<group>"; };
 		5EE161D22A7C2A9C00163390 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		5EE161D32A7C2F9900163390 /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
 		5EFABFFF2A5E07EE0070FBAC /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		5EFAC0012A5E08170070FBAC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5EFAC0072A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				5EFAC0012A5E08170070FBAC /* User.swift */,
+				5EE161D32A7C2F9900163390 /* Host.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				5EFAC00A2A5E08ED0070FBAC /* Bundle-Decodable.swift in Sources */,
 				5E4B50002A5DF45A00A06336 /* ViewGroupsCard.swift in Sources */,
 				5E4B4FFF2A5DF45A00A06336 /* ViewAppAccessCard.swift in Sources */,
+				5EE161D42A7C2F9900163390 /* Host.swift in Sources */,
 				5EB09A0A2A65D35500EAC696 /* DevicePolicyRow.swift in Sources */,
 				5E317F672A5F200B00E9D619 /* AppRowView.swift in Sources */,
 			);
