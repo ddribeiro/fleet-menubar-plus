@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>PROD_API_KEY</key>
+	<string>$(PROD_API_KEY)</string>
+	<key>STG_API_KEY</key>
+	<string>$(STG_API_KEY)</string>
 	<key>BUNDLE_ID</key>
 	<string>io.harmonize-stg.HarmonizeMenuBarExtra</string>
 	<key>CFBundleURLTypes</key>

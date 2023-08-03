@@ -24,7 +24,7 @@ struct UserPreviewView: View {
                                 .stroke(.secondary, lineWidth: 1)
                                 .opacity(0.1)
                                 .frame(width: 44)
-                            )
+                        )
                 } else if phase.error != nil {
                     Text("There was an error loading the image.")
                 } else {

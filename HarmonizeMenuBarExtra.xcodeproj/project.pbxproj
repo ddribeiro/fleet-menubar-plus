@@ -25,6 +25,8 @@
 		5EB09A0C2A65D83500EAC696 /* RequestAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */; };
 		5EB6BA762A5F240D00B72537 /* MyAppAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */; };
 		5EE161D42A7C2F9900163390 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE161D32A7C2F9900163390 /* Host.swift */; };
+		5EE161D92A7C360400163390 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE161D82A7C360400163390 /* NetworkManager.swift */; };
+		5EE161DB2A7C368500163390 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE161DA2A7C368500163390 /* Endpoint.swift */; };
 		5EFAC0002A5E07EE0070FBAC /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EFABFFF2A5E07EE0070FBAC /* user.json */; };
 		5EFAC0022A5E08170070FBAC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAC0012A5E08170070FBAC /* User.swift */; };
 		5EFAC0092A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAC0072A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift */; };
@@ -54,6 +56,8 @@
 		5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppAccessView.swift; sourceTree = "<group>"; };
 		5EE161D22A7C2A9C00163390 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		5EE161D32A7C2F9900163390 /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
+		5EE161D82A7C360400163390 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5EE161DA2A7C368500163390 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		5EFABFFF2A5E07EE0070FBAC /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		5EFAC0012A5E08170070FBAC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5EFAC0072A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 				5E0F41482A55B2B400889BF6 /* HarmonizeMenuBarExtraApp.swift */,
 				5EFAC0062A5E08CE0070FBAC /* Extensions */,
 				5EFAC0032A5E089B0070FBAC /* Models */,
+				5EE161D72A7C356B00163390 /* Controllers */,
 				5EFAC0042A5E08AB0070FBAC /* Views */,
 				5EE161CF2A7C29E600163390 /* Configuration */,
 				5E0F414C2A55B2B400889BF6 /* Assets.xcassets */,
@@ -121,11 +126,20 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		5EE161D72A7C356B00163390 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5EE161D82A7C360400163390 /* NetworkManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		5EFAC0032A5E089B0070FBAC /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				5EFAC0012A5E08170070FBAC /* User.swift */,
 				5EE161D32A7C2F9900163390 /* Host.swift */,
+				5EE161DA2A7C368500163390 /* Endpoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EE161D92A7C360400163390 /* NetworkManager.swift in Sources */,
 				5E8785692A7057CB0085354B /* AppCardView.swift in Sources */,
 				5E41FAA82A6704430047E360 /* AppLibraryView.swift in Sources */,
 				5EB6BA762A5F240D00B72537 /* MyAppAccessView.swift in Sources */,
@@ -279,6 +294,7 @@
 				5EFAC0022A5E08170070FBAC /* User.swift in Sources */,
 				5E4B4FFE2A5DF45A00A06336 /* RequestAppAccessCard.swift in Sources */,
 				5EFAC00A2A5E08ED0070FBAC /* Bundle-Decodable.swift in Sources */,
+				5EE161DB2A7C368500163390 /* Endpoint.swift in Sources */,
 				5E4B50002A5DF45A00A06336 /* ViewGroupsCard.swift in Sources */,
 				5E4B4FFF2A5DF45A00A06336 /* ViewAppAccessCard.swift in Sources */,
 				5EE161D42A7C2F9900163390 /* Host.swift in Sources */,
@@ -292,6 +308,7 @@
 /* Begin XCBuildConfiguration section */
 		5E0F41522A55B2B400889BF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EE161D22A7C2A9C00163390 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -352,6 +369,7 @@
 		};
 		5E0F41532A55B2B400889BF6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EE161D22A7C2A9C00163390 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
