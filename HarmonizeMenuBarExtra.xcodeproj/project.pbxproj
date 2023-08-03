@@ -46,11 +46,12 @@
 		5E4B4FFB2A5DF45A00A06336 /* ViewAppAccessCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAppAccessCard.swift; sourceTree = "<group>"; };
 		5E4B4FFC2A5DF45A00A06336 /* ViewGroupsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewGroupsCard.swift; sourceTree = "<group>"; };
 		5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreviewView.swift; sourceTree = "<group>"; };
-		5E8672702A55EAA80056B9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5E8672702A55EAA80056B9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E8785682A7057CB0085354B /* AppCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCardView.swift; sourceTree = "<group>"; };
 		5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePolicyRow.swift; sourceTree = "<group>"; };
 		5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAccessView.swift; sourceTree = "<group>"; };
 		5EB6BA752A5F240D00B72537 /* MyAppAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppAccessView.swift; sourceTree = "<group>"; };
+		5EE161D02A7C29F000163390 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = HarmonizeMenuBarExtra/Configuration/Config.xcconfig; sourceTree = SOURCE_ROOT; };
 		5EFABFFF2A5E07EE0070FBAC /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
 		5EFAC0012A5E08170070FBAC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5EFAC0072A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
@@ -91,11 +92,8 @@
 				5EFAC0062A5E08CE0070FBAC /* Extensions */,
 				5EFAC0032A5E089B0070FBAC /* Models */,
 				5EFAC0042A5E08AB0070FBAC /* Views */,
-				5EFABFFF2A5E07EE0070FBAC /* user.json */,
-				5E41FAA52A6703D60047E360 /* applications.json */,
-				5E8672702A55EAA80056B9BD /* Info.plist */,
+				5EE161CF2A7C29E600163390 /* Configuration */,
 				5E0F414C2A55B2B400889BF6 /* Assets.xcassets */,
-				5E0F41512A55B2B400889BF6 /* HarmonizeMenuBarExtra.entitlements */,
 				5E0F414E2A55B2B400889BF6 /* Preview Content */,
 			);
 			path = HarmonizeMenuBarExtra;
@@ -107,6 +105,18 @@
 				5E0F414F2A55B2B400889BF6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5EE161CF2A7C29E600163390 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				5EFABFFF2A5E07EE0070FBAC /* user.json */,
+				5E41FAA52A6703D60047E360 /* applications.json */,
+				5E8672702A55EAA80056B9BD /* Info.plist */,
+				5E0F41512A55B2B400889BF6 /* HarmonizeMenuBarExtra.entitlements */,
+				5EE161D02A7C29F000163390 /* Config.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		5EFAC0032A5E089B0070FBAC /* Models */ = {
