@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+enum LoadingState {
+    case loading, loaded, failed
+}
+
+enum HostError: Error {
+    case noHostFound
+}
+
 struct MenuBarView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.networkManager) var networkManager
@@ -14,6 +22,7 @@ struct MenuBarView: View {
     let user: User = Bundle.main.decode(User.self, from: "user.json")
     let policies = [FleetPolicy]()
     @State var currentHost: Host?
+    @State private var loadingState = LoadingState.loading
 
     var body: some View {
         NavigationStack {
@@ -62,38 +71,62 @@ struct MenuBarView: View {
                 .fixedSize(horizontal: false, vertical: true)
 
                 Divider()
+                Group {
+                    HStack {
+                        Text("My Device Health")
+                            .font(.headline)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
 
-                HStack {
-                    Text("My Device Health")
-                        .font(.headline)
-                    Spacer()
-                }
-                .padding(.horizontal)
+                    if (currentHost?.mdm?.encryptionKeyAvailable) == false {
+                        HStack {
+                            Image(systemName: "exclamationmark.circle.fill")
+                                .foregroundColor(.red)
+                            Text("FileVault Encryption Key Not Escrowed")
+                                .font(.headline)
+                                .foregroundColor(.red)
 
-                ScrollView {
-                    if let currentHost = currentHost {
-                        if let policies = currentHost.policies {
-                            ForEach(policies) { policy in
-                                NavigationLink(value: policy) {
-                                    DevicePolicyRow(policy: policy)
+                            Spacer()
+
+                            Button {
+                                Task {
+                                    try await rotateEncryptionKey()
                                 }
-                                .buttonStyle(.borderless)
-                                .tint(.primary)
+                            } label: {
+                                Text("Escrow Key")
                             }
-                            .background(.thickMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .padding(.horizontal)
+                            .buttonStyle(.automatic)
                         }
-                    } else {
-                        VStack {
-                            ProgressView()
-                            Text("Loading Device Policies from Fleet")
-                                .foregroundColor(.secondary)
-                                .padding()
+                        .padding(.horizontal)
+
+                    }
+
+                    ScrollView {
+                        if let currentHost = currentHost {
+                            if let policies = currentHost.policies {
+                                ForEach(policies) { policy in
+                                    NavigationLink(value: policy) {
+                                        DevicePolicyRow(policy: policy)
+                                    }
+                                    .buttonStyle(.borderless)
+                                    .tint(.primary)
+                                }
+                                .background(.thickMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .padding(.horizontal)
+                            }
+                        } else {
+                            VStack {
+                                ProgressView()
+                                Text("Loading Device Policies from Fleet")
+                                    .foregroundColor(.secondary)
+                                    .padding()
+                            }
                         }
                     }
+                    .frame(maxHeight: 300)
                 }
-                .frame(maxHeight: 300)
 
                 Text("Secure login and automated access provided by Harmonize.")
                     .font(.footnote)
@@ -146,10 +179,6 @@ struct MenuBarView: View {
         return serialNumber ?? "Unknown"
     }
 
-    enum HostError: Error {
-        case noHostFound
-    }
-
     func getCurrentHost() async throws -> Host {
         do {
             var allHosts = [Host]()
@@ -162,9 +191,12 @@ struct MenuBarView: View {
             if let host = allHosts.first(where: { $0.hardwareSerial == getDeviceSerialNumber() }) {
                 let endpoint = Endpoint.getHost(id: host.id)
                 currentHost = try await networkManager.fetch(endpoint)
+
+                loadingState = .loaded
             } else {
-                // Throw an error if no host is found
+                loadingState = .failed
                 throw HostError.noHostFound
+
             }
 
             return currentHost
@@ -173,6 +205,38 @@ struct MenuBarView: View {
             throw error
         }
     }
+
+    func rotateEncryptionKey() async throws {
+
+        guard let deviceToken = readTokenFromFile() else { return }
+
+        guard let url = URL(
+            string: "fleet/device/\(deviceToken)/rotate_encryption_key",
+            relativeTo: networkManager.environment.baseURL
+        ) else {
+            throw URLError(.unsupportedURL)
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        var (_, _) = try await networkManager.environment.session.data(for: request)
+    }
+
+    func readTokenFromFile() -> String? {
+        let fileURL = URL(fileURLWithPath: "/opt/orbit/identifier")
+
+        do {
+            // Read the content of the file into a string
+            let token = try String(contentsOf: fileURL, encoding: .utf8)
+            return token.trimmingCharacters(in: .whitespacesAndNewlines)
+        } catch {
+            // Handle any errors that might occur during file reading
+            print("Error reading file: \(error)")
+            return nil
+        }
+    }
+
 }
 
 struct MenuBarView_Previews: PreviewProvider {
