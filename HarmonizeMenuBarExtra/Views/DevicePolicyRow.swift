@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DevicePolicyRow: View {
-    var policy: Policy
+    var policy: FleetPolicy
     var body: some View {
         HStack {
             Image(systemName: policy.response == "pass" ? "checkmark.circle.fill" : "xmark.circle.fill")

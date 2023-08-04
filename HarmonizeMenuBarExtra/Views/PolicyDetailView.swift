@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PolicyDetailView: View {
-    var policy: Policy
+    var policy: FleetPolicy
 
     var body: some View {
             VStack(alignment: .leading) {

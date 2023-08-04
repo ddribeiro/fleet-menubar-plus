@@ -35,7 +35,7 @@ struct MenuBarView: View {
                 Divider()
 
                 HStack {
-                    UserPreviewView(user: user.user)
+                    UserPreviewView(user: user.user, host: currentHost)
                     Spacer()
                 }
 
@@ -72,25 +72,27 @@ struct MenuBarView: View {
                 .padding(.horizontal)
 
                 ScrollView {
-                    ForEach(user.user.devices) { device in
-                        ForEach(device.policies) { policy in
-                            NavigationLink(value: policy) {
-                                DevicePolicyRow(policy: policy)
+                    if let currentHost = currentHost {
+                        if let policies = currentHost.policies {
+                            ForEach(policies) { policy in
+                                NavigationLink(value: policy) {
+                                    DevicePolicyRow(policy: policy)
+                                }
+                                .buttonStyle(.borderless)
+                                .tint(.primary)
                             }
-                            .buttonStyle(.borderless)
-                            .tint(.primary)
+                            .background(.regularMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .padding(.horizontal)
                         }
-                        .background(.regularMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .padding(.horizontal)
                     }
                 }
-                    Text("Secure login and automated access provided by Harmonize.")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .padding()
+                Text("Secure login and automated access provided by Harmonize.")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .padding()
             }
-            .navigationDestination(for: Policy.self, destination: PolicyDetailView.init)
+            .navigationDestination(for: FleetPolicy.self, destination: PolicyDetailView.init)
         }
 
         .frame(minWidth: 450, minHeight: 550)
@@ -115,26 +117,26 @@ struct MenuBarView: View {
                 IOServiceMatching("IOPlatformExpertDevice")
             )
 
-                guard platformExpert > 0 else {
-                    return nil
-                }
-
-                guard let serialNumber = (
-                    IORegistryEntryCreateCFProperty(
-                        platformExpert,
-                        kIOPlatformSerialNumberKey as CFString,
-                        kCFAllocatorDefault, 0).takeUnretainedValue() as? String)?
-                    .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            else {
-                    return nil
-                }
-
-                IOObjectRelease(platformExpert)
-
-                return serialNumber
+            guard platformExpert > 0 else {
+                return nil
             }
 
-            return serialNumber ?? "Unknown"
+            guard let serialNumber = (
+                IORegistryEntryCreateCFProperty(
+                    platformExpert,
+                    kIOPlatformSerialNumberKey as CFString,
+                    kCFAllocatorDefault, 0).takeUnretainedValue() as? String)?
+                .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            else {
+                return nil
+            }
+
+            IOObjectRelease(platformExpert)
+
+            return serialNumber
+        }
+
+        return serialNumber ?? "Unknown"
     }
 
     enum HostError: Error {
@@ -151,7 +153,8 @@ struct MenuBarView: View {
 
             // Serach the returned list of hosts for a result that matches the current serial number
             if let host = allHosts.first(where: { $0.hardwareSerial == getDeviceSerialNumber() }) {
-                currentHost = host
+                let endpoint = Endpoint.getHost(id: host.id)
+                currentHost = try await networkManager.fetch(endpoint)
             } else {
                 // Throw an error if no host is found
                 throw HostError.noHostFound

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserPreviewView: View {
     var user: UserDetail
+    var host: Host?
 
     var body: some View {
         HStack {
@@ -35,6 +36,13 @@ struct UserPreviewView: View {
             VStack(alignment: .leading) {
                 Text(user.name)
                     .font(.headline)
+                if let host = host {
+                    HStack {
+                        Image(systemName: "laptopcomputer")
+                        Text(host.computerName)
+                            .foregroundColor(.secondary)
+                    }
+                }
                 HStack {
                     Image(systemName: "building.2")
                     Text(user.company)
@@ -48,6 +56,6 @@ struct UserPreviewView: View {
 
 struct UserPreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        UserPreviewView(user: .example )
+        UserPreviewView(user: .example, host: .example )
     }
 }
