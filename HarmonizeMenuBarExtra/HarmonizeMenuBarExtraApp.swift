@@ -12,9 +12,6 @@ struct HarmonizeMenuBarExtraApp: App {
     @State private var networkManager = NetworkManager(environment: .production)
 
     var body: some Scene {
-        WindowGroup {
-            RequestAccessView()
-        }
         MenuBarExtra("Harmonize Menu Bar Extra", image: "harmonize-symbol-black-32px") {
             MenuBarView()
                 .environment(\.networkManager, networkManager)
