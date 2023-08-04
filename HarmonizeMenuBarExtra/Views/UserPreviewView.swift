@@ -38,15 +38,17 @@ struct UserPreviewView: View {
                     .font(.headline)
                 if let host = host {
                     HStack {
-                        Image(systemName: "laptopcomputer")
-                        Text(host.computerName)
-                            .foregroundColor(.secondary)
+                        VStack {
+                            Image(systemName: "laptopcomputer")
+                            Image(systemName: "building.2")
+                        }
+                        VStack(alignment: .leading) {
+                            Text(host.computerName)
+                                .foregroundColor(.secondary)
+                            Text(user.company)
+                                .foregroundColor(.secondary)
+                        }
                     }
-                }
-                HStack {
-                    Image(systemName: "building.2")
-                    Text(user.company)
-                        .foregroundColor(.secondary)
                 }
             }
         }

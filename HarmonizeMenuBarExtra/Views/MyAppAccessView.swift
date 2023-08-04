@@ -75,8 +75,9 @@ struct MyAppAccessView: View {
             }
         }
         .navigationTitle("My App Access")
-        .frame(minWidth: 450, minHeight: 550)
-        .fixedSize()
+        .frame(width: 450)
+
+        Spacer()
     }
 }
 

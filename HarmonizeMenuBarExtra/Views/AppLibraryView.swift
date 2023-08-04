@@ -41,8 +41,10 @@ struct AppLibraryView: View {
             }
             .padding(.horizontal)
         }
-        .frame(maxWidth: 450, maxHeight: 550)
+        .frame(width: 450)
         .navigationTitle("App Library")
+
+        Spacer()
     }
 
 }

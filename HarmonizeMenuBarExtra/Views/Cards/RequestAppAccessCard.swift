@@ -18,10 +18,10 @@ struct RequestAppAccessCard: View {
                     .padding(.vertical, 1)
 
                 Text("Request App Access")
+                    .fixedSize(horizontal: false, vertical: true)
                     .font(.headline)
                     .multilineTextAlignment(.center)
             }
-
         }
         .buttonStyle(.borderless)
         .tint(.primary)

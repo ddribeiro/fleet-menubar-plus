@@ -49,18 +49,17 @@ struct MenuBarView: View {
                 }
                 .padding(.horizontal)
 
-                Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+                Grid(horizontalSpacing: 14, verticalSpacing: 12) {
                     GridRow {
                         RequestAppAccessCard()
                         ViewAppAccessCard(applications: user.user.assignedApps)
                         ViewGroupsCard()
                     }
-                    .frame(width: 120, height: 100)
-                    .background(.regularMaterial)
+                    .frame(width: 130, height: 100)
+                    .background(.thickMaterial)
                 }
                 .containerShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom)
 
                 Divider()
 
@@ -81,12 +80,21 @@ struct MenuBarView: View {
                                 .buttonStyle(.borderless)
                                 .tint(.primary)
                             }
-                            .background(.regularMaterial)
+                            .background(.thickMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             .padding(.horizontal)
                         }
+                    } else {
+                        VStack {
+                            ProgressView()
+                            Text("Loading Device Policies from Fleet")
+                                .foregroundColor(.secondary)
+                                .padding()
+                        }
                     }
                 }
+                .frame(maxHeight: 300)
+
                 Text("Secure login and automated access provided by Harmonize.")
                     .font(.footnote)
                     .foregroundColor(.secondary)
@@ -94,9 +102,8 @@ struct MenuBarView: View {
             }
             .navigationDestination(for: FleetPolicy.self, destination: PolicyDetailView.init)
         }
-
-        .frame(minWidth: 450, minHeight: 550)
-        .fixedSize()
+        .background(.ultraThinMaterial)
+        .frame(width: 450, height: 650)
         .task {
             do {
                 currentHost = try await getCurrentHost()

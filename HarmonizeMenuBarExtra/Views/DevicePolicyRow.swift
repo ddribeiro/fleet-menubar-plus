@@ -20,13 +20,13 @@ struct DevicePolicyRow: View {
                 Text(policy.response.capitalized)
                     .foregroundColor(.secondary)
                 }
+            .multilineTextAlignment(.leading)
             Spacer()
 
             Image(systemName: "chevron.forward")
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(.ultraThinMaterial)
     }
 }
 
