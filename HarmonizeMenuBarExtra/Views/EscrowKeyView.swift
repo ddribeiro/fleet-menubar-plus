@@ -22,13 +22,13 @@ struct EscrowKeyView: View {
 
             Button {
                 Task {
-                    print("Button pressed!")
                     try await rotateEncryptionKey()
                 }
             } label: {
                 Text("Escrow Key")
             }
             .buttonStyle(.automatic)
+
         }
     }
 
@@ -47,7 +47,6 @@ struct EscrowKeyView: View {
             throw URLError(.unsupportedURL)
         }
 
-        print(url.absoluteString)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
@@ -60,7 +59,6 @@ struct EscrowKeyView: View {
         do {
             // Read the content of the file into a string
             let token = try String(contentsOf: fileURL, encoding: .utf8)
-            print("Device token: \(token)")
             return token.trimmingCharacters(in: .whitespacesAndNewlines)
         } catch {
             // Handle any errors that might occur during file reading

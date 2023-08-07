@@ -36,6 +36,16 @@ struct MenuBarView: View {
 
                     Spacer()
 
+                    Image(systemName: "arrow.clockwise")
+                        .onTapGesture {
+                            Task {
+                                do {
+                                    currentHost = try await getCurrentHost()
+                                } catch {
+                                    print("Failed to get current host")
+                                }
+                            }
+                        }
                     Image(systemName: "bell.badge.fill")
                     Image(systemName: "line.3.horizontal")
                 }
