@@ -21,6 +21,9 @@ struct MenuBarView: View {
 
     let user: User = Bundle.main.decode(User.self, from: "user.json")
     let policies = [FleetPolicy]()
+
+    let timer = Timer.publish(every: 360, tolerance: 10, on: .main, in: .common).autoconnect()
+
     @State var currentHost: Host?
     @State private var loadingState = LoadingState.loading
 
@@ -129,6 +132,11 @@ struct MenuBarView: View {
         }
         .background(.ultraThinMaterial)
         .frame(width: 450, height: 650)
+        .onReceive(timer) { _ in
+            Task {
+                currentHost = try await getCurrentHost()
+            }
+        }
         .task {
             do {
                 currentHost = try await getCurrentHost()
