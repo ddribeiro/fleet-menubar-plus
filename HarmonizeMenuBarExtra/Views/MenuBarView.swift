@@ -22,10 +22,12 @@ struct MenuBarView: View {
     let user: User = Bundle.main.decode(User.self, from: "user.json")
     let policies = [FleetPolicy]()
 
-    let timer = Timer.publish(every: 360, tolerance: 10, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 300, tolerance: 30, on: .main, in: .common).autoconnect()
 
     @State var currentHost: Host?
     @State private var loadingState = LoadingState.loading
+    @State private var date: Date?
+    @AppStorage("deviceID") var deviceID: Int?
 
     var body: some View {
         NavigationStack {
@@ -50,7 +52,23 @@ struct MenuBarView: View {
                             }
                         }
                     Image(systemName: "bell.badge.fill")
-                    Image(systemName: "line.3.horizontal")
+                    Menu {
+                        Button("About") { }
+                        Button("Refresh") {
+                            Task {
+                                currentHost = try await getCurrentHost()
+                            }
+                        }
+                        Divider()
+                        Button("Quit") {
+                            NSApplication.shared.terminate(nil)
+                        }.keyboardShortcut("q")
+                    } label: {
+                        Label("Menu", systemImage: "line.3.horizontal")
+                            .labelStyle(.iconOnly)
+                    }
+                    .frame(width: 25, height: 20)
+                    .menuStyle(.borderlessButton)
                 }
                 .padding()
 
@@ -122,10 +140,10 @@ struct MenuBarView: View {
                     }
                     .frame(maxHeight: 300)
                 }
-
-                Text("Secure login and automated access provided by Harmonize.")
+                Text("Last updated on \(date?.formatted(date: .abbreviated, time: .shortened) ?? "")")
                     .font(.footnote)
                     .foregroundColor(.secondary)
+
                     .padding()
             }
             .navigationDestination(for: FleetPolicy.self, destination: PolicyDetailView.init)
@@ -186,11 +204,12 @@ struct MenuBarView: View {
 
             // Get a list of all hosts from the Fleet API
             allHosts = try await networkManager.fetch(.hosts)
-
             // Serach the returned list of hosts for a result that matches the current serial number
             if let host = allHosts.first(where: { $0.hardwareSerial == getDeviceSerialNumber() }) {
                 let endpoint = Endpoint.getHost(id: host.id)
                 currentHost = try await networkManager.fetch(endpoint)
+
+                date = Date.now
 
                 loadingState = .loaded
             } else {
