@@ -15,6 +15,7 @@ struct ViewGroupsCard: View {
                 .padding(.vertical, 1)
 
             Text("View My Groups")
+                .fixedSize(horizontal: false, vertical: true)
                 .font(.headline)
                 .multilineTextAlignment(.center)
         }

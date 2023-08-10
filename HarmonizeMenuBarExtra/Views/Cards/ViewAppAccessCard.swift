@@ -19,6 +19,7 @@ struct ViewAppAccessCard: View {
                     .imageScale(.large)
                     .padding(.vertical, 1)
                 Text("View My App Access")
+                    .fixedSize(horizontal: false, vertical: true)
                     .font(.headline)
                     .multilineTextAlignment(.center)
             }

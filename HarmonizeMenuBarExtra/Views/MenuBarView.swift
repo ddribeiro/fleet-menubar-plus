@@ -7,13 +7,27 @@
 
 import SwiftUI
 
+enum LoadingState {
+    case loading, loaded, failed
+}
+
+enum HostError: Error {
+    case noHostFound
+}
+
 struct MenuBarView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.networkManager) var networkManager
 
     let user: User = Bundle.main.decode(User.self, from: "user.json")
     let policies = [FleetPolicy]()
+
+    let timer = Timer.publish(every: 300, tolerance: 30, on: .main, in: .common).autoconnect()
+
     @State var currentHost: Host?
+    @State private var loadingState = LoadingState.loading
+    @State private var date: Date?
+    @AppStorage("deviceID") var deviceID: Int?
 
     var body: some View {
         NavigationStack {
@@ -27,15 +41,41 @@ struct MenuBarView: View {
 
                     Spacer()
 
+                    Image(systemName: "arrow.clockwise")
+                        .onTapGesture {
+                            Task {
+                                do {
+                                    currentHost = try await getCurrentHost()
+                                } catch {
+                                    print("Failed to get current host")
+                                }
+                            }
+                        }
                     Image(systemName: "bell.badge.fill")
-                    Image(systemName: "line.3.horizontal")
+                    Menu {
+                        Button("About") { }
+                        Button("Refresh") {
+                            Task {
+                                currentHost = try await getCurrentHost()
+                            }
+                        }
+                        Divider()
+                        Button("Quit") {
+                            NSApplication.shared.terminate(nil)
+                        }.keyboardShortcut("q")
+                    } label: {
+                        Label("Menu", systemImage: "line.3.horizontal")
+                            .labelStyle(.iconOnly)
+                    }
+                    .frame(width: 25, height: 20)
+                    .menuStyle(.borderlessButton)
                 }
                 .padding()
 
                 Divider()
 
                 HStack {
-                    UserPreviewView(user: user.user)
+                    UserPreviewView(user: user.user, host: currentHost)
                     Spacer()
                 }
 
@@ -49,52 +89,72 @@ struct MenuBarView: View {
                 }
                 .padding(.horizontal)
 
-                Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+                Grid(horizontalSpacing: 14, verticalSpacing: 12) {
                     GridRow {
                         RequestAppAccessCard()
                         ViewAppAccessCard(applications: user.user.assignedApps)
                         ViewGroupsCard()
                     }
-                    .frame(width: 120, height: 100)
-                    .background(.regularMaterial)
+                    .frame(width: 130, height: 100)
+                    .background(.thickMaterial)
                 }
                 .containerShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .fixedSize(horizontal: false, vertical: true)
-                .padding(.bottom)
 
                 Divider()
-
-                HStack {
-                    Text("My Device Health")
-                        .font(.headline)
-                    Spacer()
-                }
-                .padding(.horizontal)
-
-                ScrollView {
-                    ForEach(user.user.devices) { device in
-                        ForEach(device.policies) { policy in
-                            NavigationLink(value: policy) {
-                                DevicePolicyRow(policy: policy)
-                            }
-                            .buttonStyle(.borderless)
-                            .tint(.primary)
-                        }
-                        .background(.regularMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .padding(.horizontal)
+                Group {
+                    HStack {
+                        Text("My Device Health")
+                            .font(.headline)
+                        Spacer()
                     }
-                }
-                    Text("Secure login and automated access provided by Harmonize.")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .padding()
-            }
-            .navigationDestination(for: Policy.self, destination: PolicyDetailView.init)
-        }
+                    .padding(.horizontal)
 
-        .frame(minWidth: 450, minHeight: 550)
-        .fixedSize()
+                    if (currentHost?.mdm?.encryptionKeyAvailable) == false {
+                        EscrowKeyView()
+                            .padding(.horizontal)
+                    }
+
+                    ScrollView {
+                        if let currentHost = currentHost {
+                            if let policies = currentHost.policies {
+                                ForEach(policies) { policy in
+                                    NavigationLink(value: policy) {
+                                        DevicePolicyRow(policy: policy)
+                                    }
+                                    .buttonStyle(.borderless)
+                                    .tint(.primary)
+                                }
+                                .background(.thickMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .padding(.horizontal)
+                            }
+                        } else {
+                            VStack {
+                                ProgressView()
+                                Text("Loading Device Policies from Fleet")
+                                    .foregroundColor(.secondary)
+                                    .padding()
+                            }
+                        }
+                    }
+                    .frame(maxHeight: 300)
+                }
+                Text("Last updated on \(date?.formatted(date: .abbreviated, time: .shortened) ?? "")")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+
+                    .padding()
+            }
+            .navigationDestination(for: FleetPolicy.self, destination: PolicyDetailView.init)
+        }
+        .background(.ultraThinMaterial)
+        .frame(width: 450, height: 650)
+        .onReceive(timer) { _ in
+            Task {
+                currentHost = try await getCurrentHost()
+            }
+        }
         .task {
             do {
                 currentHost = try await getCurrentHost()
@@ -115,30 +175,26 @@ struct MenuBarView: View {
                 IOServiceMatching("IOPlatformExpertDevice")
             )
 
-                guard platformExpert > 0 else {
-                    return nil
-                }
-
-                guard let serialNumber = (
-                    IORegistryEntryCreateCFProperty(
-                        platformExpert,
-                        kIOPlatformSerialNumberKey as CFString,
-                        kCFAllocatorDefault, 0).takeUnretainedValue() as? String)?
-                    .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            else {
-                    return nil
-                }
-
-                IOObjectRelease(platformExpert)
-
-                return serialNumber
+            guard platformExpert > 0 else {
+                return nil
             }
 
-            return serialNumber ?? "Unknown"
-    }
+            guard let serialNumber = (
+                IORegistryEntryCreateCFProperty(
+                    platformExpert,
+                    kIOPlatformSerialNumberKey as CFString,
+                    kCFAllocatorDefault, 0).takeUnretainedValue() as? String)?
+                .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            else {
+                return nil
+            }
 
-    enum HostError: Error {
-        case noHostFound
+            IOObjectRelease(platformExpert)
+
+            return serialNumber
+        }
+
+        return serialNumber ?? "Unknown"
     }
 
     func getCurrentHost() async throws -> Host {
@@ -148,13 +204,18 @@ struct MenuBarView: View {
 
             // Get a list of all hosts from the Fleet API
             allHosts = try await networkManager.fetch(.hosts)
-
             // Serach the returned list of hosts for a result that matches the current serial number
             if let host = allHosts.first(where: { $0.hardwareSerial == getDeviceSerialNumber() }) {
-                currentHost = host
+                let endpoint = Endpoint.getHost(id: host.id)
+                currentHost = try await networkManager.fetch(endpoint)
+
+                date = Date.now
+
+                loadingState = .loaded
             } else {
-                // Throw an error if no host is found
+                loadingState = .failed
                 throw HostError.noHostFound
+
             }
 
             return currentHost

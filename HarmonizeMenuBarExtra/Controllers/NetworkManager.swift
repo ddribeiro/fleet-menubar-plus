@@ -86,6 +86,10 @@ struct NetworkManager {
             }
         }
 
+        if let responseString = String(data: data, encoding: .utf8) {
+            print(responseString)
+        }
+
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .iso8601

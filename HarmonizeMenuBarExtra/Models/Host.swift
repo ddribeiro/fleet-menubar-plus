@@ -61,12 +61,16 @@ struct FleetPolicy: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
     let critical: Bool
+    let description: String
+    let resolution: String
     let response: String
 
     static let example = FleetPolicy(
         id: 12,
         name: "Screen lock enabled (macOS) (All teams)",
         critical: false,
+        description: "Test description",
+        resolution: "Test resolution",
         response: "pass"
     )
 }

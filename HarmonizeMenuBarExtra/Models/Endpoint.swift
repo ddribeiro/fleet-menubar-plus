@@ -22,3 +22,13 @@ extension Endpoint where T == [Host] {
         keyPath: "hosts"
     )
 }
+
+extension Endpoint where T == Host {
+    static func getHost(id: Int) -> Endpoint {
+        return Endpoint(
+            path: "hosts/\(id)",
+            type: Host.self,
+            keyPath: "host"
+        )
+    }
+}

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DevicePolicyRow: View {
-    var policy: Policy
+    var policy: FleetPolicy
     var body: some View {
         HStack {
             Image(systemName: policy.response == "pass" ? "checkmark.circle.fill" : "xmark.circle.fill")
@@ -20,13 +20,13 @@ struct DevicePolicyRow: View {
                 Text(policy.response.capitalized)
                     .foregroundColor(.secondary)
                 }
+            .multilineTextAlignment(.leading)
             Spacer()
 
             Image(systemName: "chevron.forward")
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(.ultraThinMaterial)
     }
 }
 

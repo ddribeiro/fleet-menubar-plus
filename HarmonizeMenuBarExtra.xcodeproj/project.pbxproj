@@ -20,6 +20,7 @@
 		5E4B4FFF2A5DF45A00A06336 /* ViewAppAccessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFB2A5DF45A00A06336 /* ViewAppAccessCard.swift */; };
 		5E4B50002A5DF45A00A06336 /* ViewGroupsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFC2A5DF45A00A06336 /* ViewGroupsCard.swift */; };
 		5E4B50012A5DF45A00A06336 /* UserPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */; };
+		5E80D0EC2A8150EF00B148EB /* EscrowKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E80D0EB2A8150EF00B148EB /* EscrowKeyView.swift */; };
 		5E8785692A7057CB0085354B /* AppCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8785682A7057CB0085354B /* AppCardView.swift */; };
 		5EB09A0A2A65D35500EAC696 /* DevicePolicyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */; };
 		5EB09A0C2A65D83500EAC696 /* RequestAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */; };
@@ -49,6 +50,7 @@
 		5E4B4FFB2A5DF45A00A06336 /* ViewAppAccessCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAppAccessCard.swift; sourceTree = "<group>"; };
 		5E4B4FFC2A5DF45A00A06336 /* ViewGroupsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewGroupsCard.swift; sourceTree = "<group>"; };
 		5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreviewView.swift; sourceTree = "<group>"; };
+		5E80D0EB2A8150EF00B148EB /* EscrowKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscrowKeyView.swift; sourceTree = "<group>"; };
 		5E8672702A55EAA80056B9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E8785682A7057CB0085354B /* AppCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCardView.swift; sourceTree = "<group>"; };
 		5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePolicyRow.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */,
 				5E0F414A2A55B2B400889BF6 /* ContentView.swift */,
 				5E0F41572A55B31400889BF6 /* MenuBarView.swift */,
+				5E80D0EB2A8150EF00B148EB /* EscrowKeyView.swift */,
 				5E47EB5A2A61D8F400AD7D06 /* PolicyDetailView.swift */,
 				5E317F662A5F200B00E9D619 /* AppRowView.swift */,
 				5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */,
@@ -297,6 +300,7 @@
 				5EE161DB2A7C368500163390 /* Endpoint.swift in Sources */,
 				5E4B50002A5DF45A00A06336 /* ViewGroupsCard.swift in Sources */,
 				5E4B4FFF2A5DF45A00A06336 /* ViewAppAccessCard.swift in Sources */,
+				5E80D0EC2A8150EF00B148EB /* EscrowKeyView.swift in Sources */,
 				5EE161D42A7C2F9900163390 /* Host.swift in Sources */,
 				5EB09A0A2A65D35500EAC696 /* DevicePolicyRow.swift in Sources */,
 				5E317F672A5F200B00E9D619 /* AppRowView.swift in Sources */,
@@ -427,6 +431,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HarmonizeMenuBarExtra/Configuration/HarmonizeMenuBarExtra.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -457,6 +462,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HarmonizeMenuBarExtra/Configuration/HarmonizeMenuBarExtra.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

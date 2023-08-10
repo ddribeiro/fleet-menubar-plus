@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PolicyDetailView: View {
-    var policy: Policy
+    var policy: FleetPolicy
 
     var body: some View {
             VStack(alignment: .leading) {
@@ -40,11 +40,11 @@ struct PolicyDetailView: View {
                     .fixedSize(horizontal: false, vertical: true)
 
             }
+
             .padding()
-            .clipShape(RoundedRectangle(cornerRadius: 19, style: .continuous))
             .navigationTitle(policy.name)
-            .frame(maxWidth: 400, minHeight: 550)
-            .fixedSize()
+            .frame(width: 450)
+        Spacer()
         }
 }
 
