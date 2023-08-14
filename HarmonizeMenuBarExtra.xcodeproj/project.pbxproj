@@ -21,6 +21,7 @@
 		5E4B50002A5DF45A00A06336 /* ViewGroupsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFC2A5DF45A00A06336 /* ViewGroupsCard.swift */; };
 		5E4B50012A5DF45A00A06336 /* UserPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */; };
 		5E80D0EC2A8150EF00B148EB /* EscrowKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E80D0EB2A8150EF00B148EB /* EscrowKeyView.swift */; };
+		5E80D0EE2A8AADA400B148EB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E80D0ED2A8AADA400B148EB /* LoadingView.swift */; };
 		5E8785692A7057CB0085354B /* AppCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8785682A7057CB0085354B /* AppCardView.swift */; };
 		5EB09A0A2A65D35500EAC696 /* DevicePolicyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */; };
 		5EB09A0C2A65D83500EAC696 /* RequestAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB09A0B2A65D83500EAC696 /* RequestAccessView.swift */; };
@@ -51,6 +52,7 @@
 		5E4B4FFC2A5DF45A00A06336 /* ViewGroupsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewGroupsCard.swift; sourceTree = "<group>"; };
 		5E4B4FFD2A5DF45A00A06336 /* UserPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreviewView.swift; sourceTree = "<group>"; };
 		5E80D0EB2A8150EF00B148EB /* EscrowKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscrowKeyView.swift; sourceTree = "<group>"; };
+		5E80D0ED2A8AADA400B148EB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5E8672702A55EAA80056B9BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E8785682A7057CB0085354B /* AppCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCardView.swift; sourceTree = "<group>"; };
 		5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicePolicyRow.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				5E8785682A7057CB0085354B /* AppCardView.swift */,
 				5EB09A092A65D35500EAC696 /* DevicePolicyRow.swift */,
 				5EFAC0052A5E08B10070FBAC /* Cards */,
+				5E80D0ED2A8AADA400B148EB /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				5EE161D92A7C360400163390 /* NetworkManager.swift in Sources */,
 				5E8785692A7057CB0085354B /* AppCardView.swift in Sources */,
 				5E41FAA82A6704430047E360 /* AppLibraryView.swift in Sources */,
+				5E80D0EE2A8AADA400B148EB /* LoadingView.swift in Sources */,
 				5EB6BA762A5F240D00B72537 /* MyAppAccessView.swift in Sources */,
 				5EFAC0092A5E08ED0070FBAC /* FileManager-DocumentsDirectory.swift in Sources */,
 				5E0F41582A55B31400889BF6 /* MenuBarView.swift in Sources */,

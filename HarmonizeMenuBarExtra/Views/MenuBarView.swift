@@ -22,11 +22,12 @@ struct MenuBarView: View {
     let user: User = Bundle.main.decode(User.self, from: "user.json")
     let policies = [FleetPolicy]()
 
-    let timer = Timer.publish(every: 300, tolerance: 30, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 300, tolerance: 60, on: .main, in: .common).autoconnect()
 
     @State var currentHost: Host?
     @State private var loadingState = LoadingState.loading
     @State private var date: Date?
+
     @AppStorage("deviceID") var deviceID: Int?
 
     var body: some View {
@@ -44,11 +45,7 @@ struct MenuBarView: View {
                     Image(systemName: "arrow.clockwise")
                         .onTapGesture {
                             Task {
-                                do {
-                                    currentHost = try await getCurrentHost()
-                                } catch {
-                                    print("Failed to get current host")
-                                }
+                                currentHost = try await getCurrentHost()
                             }
                         }
                     Image(systemName: "bell.badge.fill")
@@ -114,31 +111,33 @@ struct MenuBarView: View {
                         EscrowKeyView()
                             .padding(.horizontal)
                     }
-
-                    ScrollView {
-                        if let currentHost = currentHost {
-                            if let policies = currentHost.policies {
-                                ForEach(policies) { policy in
-                                    NavigationLink(value: policy) {
-                                        DevicePolicyRow(policy: policy)
+                    switch loadingState {
+                    case .loading:
+                        LoadingView()
+                    case .loaded:
+                        ScrollView {
+                            if let currentHost = currentHost {
+                                if let policies = currentHost.policies {
+                                    ForEach(policies) { policy in
+                                        NavigationLink(value: policy) {
+                                            DevicePolicyRow(policy: policy)
+                                        }
+                                        .buttonStyle(.borderless)
+                                        .tint(.primary)
                                     }
-                                    .buttonStyle(.borderless)
-                                    .tint(.primary)
+                                    .background(.thickMaterial)
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                    .padding(.horizontal)
                                 }
-                                .background(.thickMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                .padding(.horizontal)
-                            }
-                        } else {
-                            VStack {
-                                ProgressView()
-                                Text("Loading Device Policies from Fleet")
-                                    .foregroundColor(.secondary)
-                                    .padding()
+                            } else {
+                                LoadingView()
                             }
                         }
+                        .frame(maxHeight: 300)
+                    case .failed:
+                        Text("There was an error loading your device stats")
                     }
-                    .frame(maxHeight: 300)
+
                 }
                 Text("Last updated on \(date?.formatted(date: .abbreviated, time: .shortened) ?? "")")
                     .font(.footnote)
@@ -199,14 +198,20 @@ struct MenuBarView: View {
 
     func getCurrentHost() async throws -> Host {
         do {
+            loadingState = .loading
+
             var allHosts = [Host]()
             var currentHost: Host
 
-            // Get a list of all hosts from the Fleet API
-            allHosts = try await networkManager.fetch(.hosts)
+            if deviceID == nil {
+                // Get a list of all hosts from the Fleet API
+                allHosts = try await networkManager.fetch(.hosts)
+                deviceID = allHosts.first(where: { $0.hardwareSerial == getDeviceSerialNumber() })?.id
+            }
+
             // Serach the returned list of hosts for a result that matches the current serial number
-            if let host = allHosts.first(where: { $0.hardwareSerial == getDeviceSerialNumber() }) {
-                let endpoint = Endpoint.getHost(id: host.id)
+            if let id = deviceID {
+                let endpoint = Endpoint.getHost(id: id)
                 currentHost = try await networkManager.fetch(endpoint)
 
                 date = Date.now
