@@ -86,9 +86,11 @@ struct NetworkManager {
             }
         }
 
-        if let responseString = String(data: data, encoding: .utf8) {
-            print(responseString)
-        }
+        print(url.absoluteString)
+
+//        if let responseString = String(data: data, encoding: .utf8) {
+//            print(responseString)
+//        }
 
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -117,5 +119,9 @@ struct NetworkManager {
         } catch {
             return defaultValue
         }
+    }
+
+    func send<T>(_ resource: Endpoint<T>, with data: Data? = nil) {
+
     }
 }

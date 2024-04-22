@@ -9,12 +9,15 @@ import SwiftUI
 @main
 struct HarmonizeMenuBarExtraApp: App {
     @Environment(\.colorScheme) var colorScheme
-    @State private var networkManager = NetworkManager(environment: .production)
+    @State private var networkManager = NetworkManager(environment: .staging)
 
     var body: some Scene {
-        MenuBarExtra("Harmonize Menu Bar Extra", image: "harmonize-symbol-black-32px") {
+        MenuBarExtra {
             MenuBarView()
                 .environment(\.networkManager, networkManager)
+        } label: {
+            Image("harmonize-symbol-white-32px")
+                .renderingMode(.template)
         }
         .menuBarExtraStyle(.window)
     }

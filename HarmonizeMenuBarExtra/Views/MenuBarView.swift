@@ -28,7 +28,8 @@ struct MenuBarView: View {
     @State private var loadingState = LoadingState.loading
     @State private var date: Date?
 
-    @AppStorage("deviceID") var deviceID: Int?
+//    @AppStorage("deviceID") var deviceID: Int?
+    @State private var deviceID: Int?
 
     var body: some View {
         NavigationStack {
@@ -155,10 +156,8 @@ struct MenuBarView: View {
             }
         }
         .task {
-            do {
+            Task {
                 currentHost = try await getCurrentHost()
-            } catch {
-                print("Failed to get current host")
             }
         }
     }
@@ -206,6 +205,7 @@ struct MenuBarView: View {
             if deviceID == nil {
                 // Get a list of all hosts from the Fleet API
                 allHosts = try await networkManager.fetch(.hosts)
+
                 deviceID = allHosts.first(where: { $0.hardwareSerial == getDeviceSerialNumber() })?.id
             }
 
